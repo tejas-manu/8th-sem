@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <!-- <script type="text/javascript" src="https://unpkg.com/webcam-easy/dist/webcam-easy.min.js"></script> -->
+
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet"  href="style.css">
+    <title>Freshberry</title>
+</head>
+
+
+<body>
+
+    <nav>
+        <div id="logo-img">
+            <h2> Fresh Berry </h2>
+        </div>
+    </nav>
+
+    <div id="searchbox">
+        <input type="text" placeholder="Search Here">
+    </div>
+
+    <div id="banner">
+        <h1>FRESHBERRY</h1>
+        <h3>Quality Over Quantity</h3>
+    </div>
+
+    <main>
+        <h2 class="section-heading">About the Website </h2>
+
+        <section id="section-source">
+            <p>
+                India is an agricultural country where a variety of fruits and vegetables are grown and produced for consumption as well as export.
+                India is at second position after China in production of fruits.
+                Texture, Color & freshness are the important parameters for fruit quality identification.
+                The color recognition is very important process in ripeness detection.
+                The ripeness detection is external quality factor. It is also important to check for any bacterial/fungal growth on the fruit/vegetable.
+                Because of these various factors, defected fruits can be recognized.
+
+            </p>
+    <!--        <a href="#" class="btn-readmore1">GitHub Profile</a>-->
+        </section>
+
+        <h2 class="section-heading">Analyzing Real time object </h2>
+
+
+        <section>
+            <div class="container">
+                <video autoplay = "true" id = "videoElement">
+
+                </video>
+
+                <!-- <canvas id="canvas" width="500" height="375"></canvas> -->
+            </div>
+
+            <div class="result">
+                <h2> Results : </h2>
+            </div>
+
+            <div class="div1">
+                The analysed result will be displayed here.
+            </div>
+        </section>
+
+        <section>
+            <div>
+                <button id="start-camera">Start Camera</button>
+                <!-- <a id="download" download="myImage.jpg" href="" onclick="download_img(this);">Download to myImage.jpg</a> -->
+                <a href="#" class="submit_button" download="image.jpg" onclick="download_img(this);">Submit</a>
+                <button id="click-photo">Click Photo</button>
+            </div>
+        </section>
+
+        <h2 class="section-heading">Analysis of Pre-captured image </h2>
+
+        <section>
+
+            <div class="drag-area">
+                <i id="icon" class="fas fa-cloud-upload-alt"></i>
+                <header>Drag & Drop to Upload File</header>
+                <span>OR</span>
+                <button>Browse File</button>
+                <input type="file" hidden>
+            </div>
+
+            <div class="result">
+                <h2> Results : </h2>
+            </div>
+
+            <div class="div1">
+                The analysed result will be displayed here.
+            </div>
+
+            <script src="drag_drop_script.js"></script>
+        </section>
+
+        <section>
+            <div>
+                <btn href="#" class="submit_button">Submit</btn>
+            </div>
+        </section>
+
+        </section>
+
+        <script>
+
+
+            let camera_button = document.querySelector("#start-camera");
+            let video = document.querySelector("#videoElement");
+            let click_button = document.querySelector("#click-photo");
+            let canvas = document.querySelector("#canvas");
+
+            camera_button.addEventListener('click', async function() {
+                let stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
+                video.srcObject = stream;
+            });
+
+            click_button.addEventListener('click', function() {
+                canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+                let image_data_url = canvas.toDataURL('C:\Users\Manu\Downloads\Final-Year-Project-2022-main\Final-Year-Project-2022\img\jpeg');
+
+                // data url of the image
+                console.log(image_data_url);
+            });
+
+
+
+            var ctx = canvas.getContext("2d")
+
+            download_img = function(el) {
+            var image = canvas.toDataURL("image/jpg");
+            el.href = image;
+            };
+
+        </script>
+
+        
+
+        <footer>
+            <div id="right-footer">
+                <h3>Follow us on</h3>
+                <div id="social-media-footer">
+                    <ul>
+                        <li>
+                            <a href="#">
+                                <i class="fab fa-facebook fa-2x"></i>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#">
+                                <i class="fab fa-youtube fa-2x"></i>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#">
+                                <i class="fab fa-github fa-2x"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <p>This website is developed on trial basis</p>
+            </div>
+        </footer>
+
+    </main>
+
+    <script src="main.js"></script>
+
+</body>
+</html>
